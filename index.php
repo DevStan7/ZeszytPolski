@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    echo $_SESSION['czyAdmin'];
+    if(!isset($_SESSION['login']) || !isset($_SESSION['haslo'])){
+        session_unset();
+        session_destroy();
+        header('Location:login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="pl">
 

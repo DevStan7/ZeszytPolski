@@ -146,6 +146,27 @@ CREATE TABLE `notatka` (
   `id_epoka` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `uzytkownicy`
+--
+
+CREATE TABLE `uzytkownicy` (
+  `id_uzytkownik` int(11) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `haslo` varchar(100) NOT NULL,
+  `czyAdmin` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `uzytkownicy`
+--
+
+INSERT INTO `uzytkownicy` (`id_uzytkownik`, `login`, `haslo`, `czyAdmin`) VALUES
+(1, 'user1', 'haslo1', 1),
+(2, 'user2', 'haslo2', 0);
+
 --
 -- Dumping data for table `notatka`
 --
@@ -201,6 +222,12 @@ ALTER TABLE `notatka`
   ADD PRIMARY KEY (`id_notatki`);
 
 --
+-- Indeksy dla tabeli `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  ADD PRIMARY KEY (`id_uzytkownik`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -226,7 +253,13 @@ ALTER TABLE `klasy`
 -- AUTO_INCREMENT for table `notatka`
 --
 ALTER TABLE `notatka`
-  MODIFY `id_notatki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_notatki` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  MODIFY `id_uzytkownik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
