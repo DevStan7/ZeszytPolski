@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2026 at 05:42 PM
+-- Generation Time: Feb 14, 2026 at 09:46 AM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `zeszytpolski`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `administratorzy`
+--
+
+CREATE TABLE `administratorzy` (
+  `id_administratora` int(11) NOT NULL,
+  `id_uzytkownika` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `administratorzy`
+--
+
+INSERT INTO `administratorzy` (`id_administratora`, `id_uzytkownika`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -146,27 +164,6 @@ CREATE TABLE `notatka` (
   `id_epoka` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `uzytkownicy`
---
-
-CREATE TABLE `uzytkownicy` (
-  `id_uzytkownik` int(11) NOT NULL,
-  `login` varchar(50) NOT NULL,
-  `haslo` varchar(100) NOT NULL,
-  `czyAdmin` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `uzytkownicy`
---
-
-INSERT INTO `uzytkownicy` (`id_uzytkownik`, `login`, `haslo`, `czyAdmin`) VALUES
-(1, 'user1', 'haslo1', 1),
-(2, 'user2', 'haslo2', 0);
-
 --
 -- Dumping data for table `notatka`
 --
@@ -193,9 +190,36 @@ INSERT INTO `notatka` (`id_notatki`, `nazwa`, `tresc`, `id_kategoria`, `id_klasa
 (19, 'Katastrofizm międzywojenny', 'Wizje zagłady w literaturze XX wieku.', 9, 1, 9),
 (20, 'Motyw samotności we współczesności', 'Obraz samotności w literaturze XXI wieku.', 9, 2, 10);
 
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `uzytkownicy`
+--
+
+CREATE TABLE `uzytkownicy` (
+  `id_uzytkownika` int(11) NOT NULL,
+  `login` varchar(50) DEFAULT NULL,
+  `haslo` varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `uzytkownicy`
+--
+
+INSERT INTO `uzytkownicy` (`id_uzytkownika`, `login`, `haslo`) VALUES
+(1, 'lubiewszystkich', '0e957b85684f1ecc13e7b156ce32dfe4'),
+(2, 'lubiewszystkich1', '0e957b85684f1ecc13e7b156ce32dfe4'),
+(3, 'lubiewszystkich12', '0e957b85684f1ecc13e7b156ce32dfe4');
+
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `administratorzy`
+--
+ALTER TABLE `administratorzy`
+  ADD PRIMARY KEY (`id_administratora`);
 
 --
 -- Indeksy dla tabeli `epoki`
@@ -225,11 +249,17 @@ ALTER TABLE `notatka`
 -- Indeksy dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  ADD PRIMARY KEY (`id_uzytkownik`);
+  ADD PRIMARY KEY (`id_uzytkownika`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `administratorzy`
+--
+ALTER TABLE `administratorzy`
+  MODIFY `id_administratora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `epoki`
@@ -253,13 +283,13 @@ ALTER TABLE `klasy`
 -- AUTO_INCREMENT for table `notatka`
 --
 ALTER TABLE `notatka`
-  MODIFY `id_notatki` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_notatki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `id_uzytkownik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_uzytkownika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

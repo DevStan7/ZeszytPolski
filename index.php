@@ -1,69 +1,39 @@
-<?php
-    session_start();
-    echo $_SESSION['czyAdmin'];
-    if(!isset($_SESSION['login']) || !isset($_SESSION['haslo'])){
-        session_unset();
-        session_destroy();
-        header('Location:login.php');
-    }
-?>
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
+    <title>Login</title>
+    <link rel='stylesheet'>
 </head>
-
 <body>
-    <header>
-        <h1>Kompedium wiedzy z języka polskiego</h1>
-        <h2>Klasy IIIPB</h2>
-    </header>
-    <nav>
-        <form method='POST'>
-            <?php
-            include 'PHP/functions.php';
-            $conn = new mysqli('localhost', 'root', '', 'zeszytpolski');
-            generujSelect($conn, "id_epoka", "epoki", "nazwa", "epoki");
-            generujSelect($conn, "id_klasa", "klasy", "nazwa", "klasy");
-            generujSelect($conn, "id_kategoria", "kategorie", "nazwa", "kategorie");
-            echo "<button name='submitButton'>Filtruj</button>";
-            $conn->close();
-            ?>
-        </form>
-    </nav>
-    <main>
-        <?php
-        $conn = new mysqli('localhost', 'root', '', 'zeszytpolski');
-        if (isset($_POST['submitButton'])) {
-            $q = "SELECT notatka.nazwa FROM notatka INNER JOIN epoki ON notatka.id_epoka = epoki.id_epoka INNER JOIN kategorie ON kategorie.id_kategoria = notatka.id_kategoria INNER JOIN klasy ON klasy.id_klasa = notatka.id_klasa WHERE 1=1";
-            if (isset($_POST['epoki']) && $_POST['epoki'] !== '') {
-                $q .= " AND notatka.id_epoka=" . (int)$_POST['epoki'];
-            }
-            if (isset($_POST['klasy']) && $_POST['klasy'] !== '') {
-                $q .= " AND notatka.id_klasa=" . (int)$_POST['klasy'];
-            }
-            if (isset($_POST['kategorie']) && $_POST['kategorie'] !== '') {
-                $q .= " AND notatka.id_kategoria=" . (int)$_POST['kategorie'];
-            }
-            $result = $conn->query($q);
-            while($row = $result->fetch_assoc()){
-                echo $row['nazwa']."<br>";
-            }
-        } else {
-            $q = $conn->query("SELECT nazwa FROM notatka");
-            while ($row = $q->fetch_assoc()) {
-                echo $row['nazwa'] . "<br>";
-            }
+    <div class='container'>
+    <h1>Kompedium wiedzy z języka polskiego</h1>
+    <form method='post' >
+    <input type='text' name='login' placeholder='Login'><br>
+    <input type='password' name='password' placeholder='Password'><br>
+    <button name='logIn'>Zaloguj się</button>
+    <a href='PHP/register.php'>Zarejestruj się</a>
+    </div>
+
+    </form>
+    <?php
+        if(isset($_POST['logIn'])){
+        $conn = new mysqli('localhost','root','','zeszytpolski');
+        $myLogin = $_POST['login'];
+        $myPassword = $_POST['password'];
+        $hashPassword = md5($myPassword);
+        $checkLogin = "SELECT id_uzytkownika FROM uzytkownicy WHERE login = '".$myLogin."' AND haslo = '".$hashPassword."';";
+        $result = $conn->query($checkLogin);
+        if($result->num_rows > 0){
+            session_start();
+            $_SESSION['user'] = $myLogin;
+            header("location:PHP/main.php");
+        }else{
+            echo "Wrong password or login";
         }
-
-        ?>
-    </main>
-    <footer>
-        Autorzy :
-    </footer>
+        $conn->close();
+    }
+    ?>
 </body>
-
 </html>
