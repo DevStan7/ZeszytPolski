@@ -18,7 +18,6 @@ body {
     overflow: hidden;
     z-index: -1;
 }
-
 .letter{
     position: absolute;
     font-family: 'Playfair Display', serif;

@@ -21,13 +21,42 @@ function czyAdmin($conn, $id){ //Sprawdza czy id uzytkownika sesji jest w tabeli
         return false;
     }
 }
-function pokazNotatke($conn,$id){
-    $result = $conn -> query("SELECT notatka.nazwa, kategorie.nazwa, epoki.nazwa, klasy.nazwa, notatka.tresc FROM notatka INNER JOIN kategorie ON kategorie.id_kategoria = notatka.id_kategoria INNER JOIN epoki ON epoki.id_epoka = notatka.id_epoka INNER JOIN klasy ON klasy.id_klasa = notatka.id_klasa WHERE notatka.id_notatki = $id");
-    while($row = $result -> fetch_row()){
-        echo $row[0]."<br>";
-        echo $row[4]."<br>";
-        echo $row[1]."<br>";
-        echo $row[3]."<br>";
-        echo $row[2]."<br>";
+function pokazNotatke($conn, $id){
+
+    $stmt = $conn->prepare("
+        SELECT 
+            notatka.nazwa AS tytul,
+            kategorie.nazwa AS kategoria,
+            epoki.nazwa AS epoka,
+            klasy.nazwa AS klasa,
+            notatka.tresc
+        FROM notatka
+        INNER JOIN kategorie ON kategorie.id_kategoria = notatka.id_kategoria
+        INNER JOIN epoki ON epoki.id_epoka = notatka.id_epoka
+        INNER JOIN klasy ON klasy.id_klasa = notatka.id_klasa
+        WHERE notatka.id_notatki = ?
+    ");
+
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($row = $result->fetch_assoc()){
+
+        echo "<div class='note-container'>";
+
+        echo "<h1 class='note-title'>" . htmlspecialchars($row['tytul']) . "</h1>";
+
+        echo "<div class='note-meta'>";
+        echo "<span><strong>Kategoria:</strong> " . htmlspecialchars($row['kategoria']) . "</span>";
+        echo "<span><strong>Klasa:</strong> " . htmlspecialchars($row['klasa']) . "</span>";
+        echo "<span><strong>Epoka:</strong> " . htmlspecialchars($row['epoka']) . "</span>";
+        echo "</div>";
+
+        echo "<div class='note-content'>";
+        echo nl2br(htmlspecialchars($row['tresc']));
+        echo "</div>";
+
+        echo "</div>";
     }
 }

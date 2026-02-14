@@ -1,0 +1,182 @@
+.container{
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: transparent;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    
+    display: flex;
+    flex-direction: column; /* 🔥 ustawia pionowo */
+    align-items: center; /* wyśrodkowanie */
+}
+body {
+    background: #F5F1E8;
+    background: linear-gradient(90deg,rgba(245, 241, 232, 1) 0%, rgba(235, 229, 218, 1) 25%, rgba(221, 211, 195, 1) 50%, rgba(235, 229, 218, 1) 75%, rgba(245, 241, 232, 1) 100%);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+}
+/* ===== INPUTY I TEXTAREA ===== */
+
+textarea,
+input,
+select {
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 10px 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(3px);
+    transition: all 0.25s ease;
+}
+
+/* Hover – lekko podświetla */
+textarea:hover,
+input:hover,
+select:hover {
+    background: rgba(255,255,255,0.8);
+    border-color: rgba(0,0,0,0.2);
+}
+
+/* Focus – efekt pisania piórem */
+textarea:focus,
+input:focus,
+select:focus {
+    outline: none;
+    background: rgba(255,255,255,0.95);
+    border-color: #8b6f47;
+    box-shadow: 0 0 0 2px rgba(139,111,71,0.15);
+}
+
+
+/* ===== LABEL ===== */
+
+label {
+    font-size: 14px;
+    color: #5c4b3a;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+}
+
+
+/* ===== SELECT ===== */
+
+select {
+    cursor: pointer;
+    appearance: none;
+}
+
+
+/* ===== PRZYCISK ===== */
+
+button {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #8b6f47;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+
+/* Hover przycisku */
+button:hover {
+    background: #a38254;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+
+/* Kliknięcie */
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+/* ===== FORM – lekka kartka papieru ===== */
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.35);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.03);
+}
+
+
+/* ===== TEXTAREA ===== */
+
+textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.5;
+}
+.back-button {
+    align-self: flex-start;
+    margin-bottom: 15px;
+    padding: 6px 14px;
+
+    font-size: 14px;
+    text-decoration: none;
+    color: #6e5a3c;
+
+    border-radius: 8px;
+    background: rgba(255,255,255,0.4);
+    border: 1px solid rgba(0,0,0,0.08);
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover – lekki efekt kartki */
+.back-button:hover {
+    background: rgba(255,255,255,0.7);
+    color: #3f3322;
+    transform: translateX(-3px);
+}
+
+
+/* Kliknięcie */
+.back-button:active {
+    transform: translateX(-1px);
+}
+
+form h1{
+    margin-bottom: 10px;
+    color: #5c4b3a;
+    font-weight: 700;
+}
+
+.register-link{
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    color: #6e5a3c;
+    margin-top: 6px;
+    transition: 0.2s;
+}
+
+.register-link:hover{
+    color: #3f3322;
+}
+
+form .back-button{
+    align-self: center;
+    margin-top: 5px;
+}

@@ -21,11 +21,17 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel='stylesheet' href='../CSS/style.css'>
+    <link rel='stylesheet' href='../CSS/adminPanel.css'>
 </head>
 
 <body>
+    <div class="letters-bg"></div>
+    <div class='container'>
+    <a href="../index.php" class="back-button">← Strona główna</a>
     <form method='POST'>
+        <label>Tytuł</label>
         <input type='text' name='tematNotatki'>
+        <label>Treść</label>
         <textarea name='trescNotatki'></textarea>
         <?php
         $conn = new mysqli('localhost', 'root', '', 'zeszytpolski');
@@ -39,6 +45,8 @@ if (!isset($_SESSION['user'])) {
         ?>
         <button name='subButton'>Wyślij notatkę</button>
     </form>
+    </div>
+    
     <?php
     if (isset($_POST['subButton'])) {
         $conn = new mysqli('localhost', 'root', '', 'zeszytpolski');
@@ -93,6 +101,7 @@ if (!isset($_SESSION['user'])) {
     }
 
     ?>
+<script src='../JS/styleScript.js'></script>
 </body>
 
 </html>
