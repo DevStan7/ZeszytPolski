@@ -57,7 +57,7 @@ if (czyAdmin($conn, $_SESSION['id'])) {
     <div class='note-actions'>
 
         <form method='GET' action='edytujNotatke.php'>
-            <button type='submit' class='edit-btn'>Modyfikuj notatkę</button>
+            <button type='submit' class='edit-btn'  name='modyfikujNotatke' id='modyfikujNotatke'>Modyfikuj notatkę</button>
         </form>
 
         <form method='POST'>
@@ -75,7 +75,16 @@ if(isset($_POST['usunButton'])){
     $conn->query($usunQuery);
     header("location:main.php");
 }
-
+?>
+<script src="../JS/UpdateNotatka.js"></script>
+    <?php
+        if(isset($_POST['sumbitModyfikacja'])){
+        $nowaWartosc = $_POST["inputModyfikacja"];
+        $stmt = $conn->prepare("UPDATE notatka SET tresc = ? WHERE id_notatki = ?");
+        $stmt->bind_param("si", $nowaWartosc, $id);
+        $stmt->execute();
+        header("location: notatka.php?id_notatki=$id");
+    }
 $conn->close();
 ?>
 

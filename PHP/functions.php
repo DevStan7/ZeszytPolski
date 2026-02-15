@@ -53,7 +53,7 @@ function pokazNotatke($conn, $id){
         echo "<span><strong>Epoka:</strong> " . htmlspecialchars($row['epoka']) . "</span>";
         echo "</div>";
 
-        echo "<div class='note-content'>";
+        echo "<div class='note-content' name='notatkaTekst' id='notatkaTekst'>";
         echo nl2br(htmlspecialchars($row['tresc']));
         echo "</div>";
 
