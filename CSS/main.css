@@ -1,0 +1,143 @@
+/* ===== MAIN CONTAINER ===== */
+
+main{
+    width: 100%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+    animation: fadeIn 0.5s ease;
+    overflow: auto;
+}
+
+/* ===== HEADER ===== */
+
+header{
+    text-align: center;
+    margin-top: 25px;
+    color: #3b2f2f;
+}
+
+header h1{
+    font-size: 40px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+header h2{
+    font-size: 20px;
+    font-weight: normal;
+    color: #7a5c5c;
+}
+
+/* ===== NAVIGATION ===== */
+
+nav{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* linki */
+nav a{
+    text-decoration: none;
+    background: #d4c4a8;
+    color: #3b2f2f;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.25s ease;
+}
+
+nav a:hover{
+    background: #c2b293;
+    transform: translateY(-2px);
+}
+
+/* ===== FORMULARZ FILTRÓW ===== */
+
+nav form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+nav select{
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+/* przycisk filtruj */
+
+nav button{
+    padding: 10px 25px;
+    border: none;
+    background: #3b2f2f;
+    color: white;
+    border-radius: 10px;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+nav button:hover{
+    background: #2a2020;
+    transform: translateY(-2px);
+}
+
+nav button:active{
+    transform: scale(0.95);
+}
+
+/* ===== LISTA NOTATEK ===== */
+
+main a{
+    display: block;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #3b2f2f;
+    font-size: 18px;
+    transition: 0.25s ease;
+    border-left: 5px solid #d4c4a8;
+}
+
+main a:hover{
+    background: #efeae0;
+    transform: translateX(5px);
+}
+
+/* ===== STOPKA ===== */
+
+footer{
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    color: #7a5c5c;
+    font-size: 14px;
+}
+
+/* ===== ANIMACJA ===== */
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

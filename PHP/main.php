@@ -21,6 +21,8 @@ if(!isset($_SESSION['user'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main page</title>
     <link rel='stylesheet' href='../CSS/style.css'>
+    <link rel='stylesheet' href='../CSS/main.css'>
+    <link rel='stylesheet' href='../CSS/notatka.css'>
 </head>
 
 <body>
@@ -52,7 +54,7 @@ if(!isset($_SESSION['user'])){
         <?php
         $conn = new mysqli('localhost', 'root', '', 'zeszytpolski');
         if (isset($_POST['submitButton'])) {
-            $q = "SELECT notatka.nazwa FROM notatka INNER JOIN epoki ON notatka.id_epoka = epoki.id_epoka INNER JOIN kategorie ON kategorie.id_kategoria = notatka.id_kategoria INNER JOIN klasy ON klasy.id_klasa = notatka.id_klasa WHERE 1=1";
+            $q = "SELECT notatka.nazwa, notatka.id_notatki FROM notatka INNER JOIN epoki ON notatka.id_epoka = epoki.id_epoka INNER JOIN kategorie ON kategorie.id_kategoria = notatka.id_kategoria INNER JOIN klasy ON klasy.id_klasa = notatka.id_klasa WHERE 1=1";
             if (isset($_POST['epoki']) && $_POST['epoki'] !== '') {
                 $q .= " AND notatka.id_epoka=" . (int)$_POST['epoki'];
             }
@@ -64,7 +66,7 @@ if(!isset($_SESSION['user'])){
             }
             $result = $conn->query($q);
             while($row = $result->fetch_assoc()){
-                echo $row['nazwa']."<br>";
+                echo "<a href = 'notatka.php?id_notatki=".$row['id_notatki']."'>".$row['nazwa']."</a><br>";
             }
         } else {
             $q = $conn->query("SELECT id_notatki, nazwa FROM notatka");
