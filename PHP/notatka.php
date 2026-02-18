@@ -76,7 +76,7 @@ if(isset($_POST['usunButton'])){
     header("location:main.php");
 }
 ?>
-<script src="../JS/UpdateNotatka.js"></script>
+
     <?php
         if(isset($_POST['sumbitModyfikacja'])){
         $nowaWartosc = $_POST["inputModyfikacja"];
@@ -87,6 +87,7 @@ if(isset($_POST['usunButton'])){
     }
 $conn->close();
 ?>
+<script src="../JS/UpdateNotatka.js"></script>
 
     </div>
 </div>
