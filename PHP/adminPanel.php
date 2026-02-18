@@ -27,7 +27,7 @@ if (!isset($_SESSION['user'])) {
 <body>
     <div class="letters-bg"></div>
     <div class='container'>
-    <a href="../index.php" class="back-button">← Strona główna</a>
+    <a href="main.php" class="back-button">← Strona główna</a>
     <form method='POST'>
         <label>Tytuł</label>
         <input type='text' name='tematNotatki'>
